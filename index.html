@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ตัวเลือก</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: sans-serif;
+      text-align: center;
+      background: url('https://i.postimg.cc/MxhZMP4Y/rizz-bee-memee.gif') no-repeat center center fixed;
+      background-size: 80%;
+      color: white;
+    }
+    h1 {
+      margin-top: 100px;
+    }
+    button {
+      font-size: 1.4rem;
+      padding: 15px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #yesBtn {
+      background-color: #8e24aa;
+      color: white;
+    }
+    #yesBtn:hover {
+      background-color: #ba68c8;
+    }
+    #whyNotBtn {
+      background-color: #0277bd;
+      color: white;
+    }
+    #whyNotBtn:hover {
+      background-color: #81d4fa;
+    }
+    #response {
+      margin-top: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .sureButton {
+      background-color: #9c27b0;
+      color: white;
+      margin: 5px;
+      padding: 10px 25px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .sureButton:hover {
+      background-color: #ce93d8;
+    }
+    #ummBtn {
+      background-color: #0288d1;
+      color: white;
+      margin: 5px;
+      padding: 10px 25px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #ummBtn:hover {
+      background-color: #81d4fa;
+    }
+    #extraButtonsContainer {
+      margin-top: 10px;
+    }
+    #btnMovie {
+      background-color: #3949ab;
+      color: white;
+    }
+    #btnMovie:hover {
+      background-color: #5c6bc0;
+    }
+    #btnUnderground {
+      background-color: #00796b;
+      color: white;
+    }
+    #btnUnderground:hover {
+      background-color: #009688;
+    }
+    #btnIceCream {
+      background-color: #f4511e;
+      color: white;
+    }
+    #btnIceCream:hover {
+      background-color: #ff7043;
+    }
+    #btnStayStill {
+      background-color: #78909c;
+      color: #263238;
+    }
+    #btnStayStill:hover {
+      background-color: #90a4ae;
+    }
+    #backBtn {
+      background-color: #FFCC33;
+      color: #263238;
+      margin-top: 20px;
+      padding: 10px 25px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="mainTitle">can i ask you something?</h1>
+  <button id="yesBtn">Yes</button>
+  <button id="whyNotBtn">Why not?</button>
+  <p id="response"></p>
+  <div id="extraButtonsContainer"></div>
+
+  <script>
+    const response = document.getElementById('response');
+    const extraButtonsContainer = document.getElementById('extraButtonsContainer');
+    const yesBtn = document.getElementById('yesBtn');
+    const whyNotBtn = document.getElementById('whyNotBtn');
+    let previousStep = null;
+
+    yesBtn.onclick = function() {
+      response.innerHTML = '<span style="font-size: 1.3rem;">press this button👆</span>';
+      extraButtonsContainer.innerHTML = "";
+    };
+
+    function showBfQuestion() {
+      response.innerHTML = '<span style="font-size: 1.3rem;">can i be your bf?</span>';
+      extraButtonsContainer.innerHTML = `
+        <button class="sureButton" id="sureBtn">Sure</button>
+        <button class="sureButton" id="sureBtn2">Sure</button>
+      `;
+      document.getElementById('sureBtn').onclick = handleSure;
+      document.getElementById('sureBtn2').onclick = handleSure;
+    }
+
+    function handleSure() {
+      document.querySelector('h1')?.remove();
+      document.getElementById('yesBtn')?.remove();
+      document.getElementById('whyNotBtn')?.remove();
+      response.innerHTML = `
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 80vh;">
+          <div style="margin-bottom: 15px; font-size: 1.8rem; margin-top: 50px;">YIPPEEEEEEE!!</div>
+          <div style="margin-bottom: 15px;">Now we're more than friend chub pang thot laew naa😝</div>
+          <img src="https://i.postimg.cc/sXkJc23C/bb-baby.gif" alt="bb-baby" style="width: 200px; height: auto;" />
+        </div>
+      `;
+      extraButtonsContainer.innerHTML = "";
+    }
+
+    function handleGuessAnswer() {
+      response.innerHTML = `
+        <div style="margin-top: 35vh; font-size: 1.5rem; font-weight: bold;">
+          that's right
+          <div>
+            <img src="https://i.postimg.cc/Z57GyxXk/doge.gif" alt="doge" style="width: 200px; margin-top: 20px; margin-left: -50px;" />
+          </div>
+        </div>
+      `;
+      extraButtonsContainer.innerHTML = `
+        <button id="backBtn">🔙</button>
+      `;
+      document.getElementById('backBtn').onclick = () => {
+        response.innerHTML = "";
+        extraButtonsContainer.innerHTML = "";
+        handleUmm();
+      };
+    }
+
+    function handleUmm() {
+      previousStep = initialBfQuestion;
+      document.querySelector('h1')?.remove();
+      document.getElementById('yesBtn')?.remove();
+      document.getElementById('whyNotBtn')?.remove();
+      extraButtonsContainer.innerHTML = "";
+
+      response.style.marginTop = "20vh";
+      response.style.fontSize = "2rem";
+      response.style.fontWeight = "bold";
+
+      response.innerHTML = `
+        <div style="font-size: 1.8rem;">
+          ,and do you know where we're going next?? 
+        </div>
+        <div style="margin-top: 20px;">
+          <button id="answerPrevQBtn" style="font-size: 1rem; padding: 10px 20px; margin-right: 10px; border-radius: 8px; border: none; cursor: pointer; background-color: #9c27b0; color: white; transition: background-color 0.3s;">answer the prevQ first😛</button>
+          <button id="guessBtn" style="font-size: 1rem; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; background-color: #0288d1; color: white; transition: background-color 0.3s;">Guess😼</button>
+        </div>
+      `;
+
+      document.getElementById('answerPrevQBtn').onclick = () => {
+        response.innerHTML = "";
+        showBfQuestion();
+      };
+
+      document.getElementById('guessBtn').onclick = () => {
+        previousStep = handleUmm;
+        response.innerHTML = "";
+        extraButtonsContainer.innerHTML = `
+          <div id="guessButtonsContainer" style="display:flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 20px;">
+            <button id="btnIceCream" onclick="handleGuessAnswer()">ice-cream🍨</button>
+            <button id="btnMovie" onclick="handleGuessAnswer()">movie 🐉</button>
+            <button id="btnUnderground" onclick="handleGuessAnswer()">underground🪼</button>
+            <button id="btnStayStill" onclick="handleGuessAnswer()">stay still💤</button>
+          </div>
+          <button id="backBtn">🔙</button>
+        `;
+        document.getElementById('backBtn').onclick = () => {
+          response.innerHTML = "";
+          extraButtonsContainer.innerHTML = "";
+          handleUmm();
+        };
+      };
+    }
+
+    function initialBfQuestion() {
+      previousStep = null;
+      response.innerHTML = '<span style="font-size: 1.3rem;">can i be your bf?</span>';
+      extraButtonsContainer.innerHTML = `
+        <button class="sureButton" id="sureBtn">Sure!!</button>
+        <button id="ummBtn">Umm🤔</button>
+      `;
+      document.getElementById('sureBtn').onclick = handleSure;
+      document.getElementById('ummBtn').onclick = handleUmm;
+    }
+
+    whyNotBtn.onclick = initialBfQuestion;
+  </script>
+</body>
+</html>
